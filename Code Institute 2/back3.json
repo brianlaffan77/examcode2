@@ -1,0 +1,23 @@
+import json
+import tweepy
+from tweepy import OAuthHandler
+
+CONSUMER_KEY = '6yxBpgpvG3EBN3nmDSoBrwE2U'
+CONSUMER_SECRET = 'bvEKkfp35FQAQOaTz43hX36jOS3ouwSgit8tZXjBYPawHHOhXD'
+OAUTH_TOKEN = 'bvEKkfp35FQAQOaTz43hX36jOS3ouwSgit8tZXjBYPawHHOhXD'
+OAUTH_TOKEN_SECRET = '6yxBpgpvG3EBN3nmDSoBrwE2U'
+
+auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+api = tweepy.API(auth)
+
+count = 10
+query = 'Dublin'
+
+result = [status for status in tweepy.Cursor(api.search, q=query).items(count)]
+
+for result in result:
+	print result
+	
+for result in results:
+	print json.dumps(result._json, indent=2)
